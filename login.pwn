@@ -6,7 +6,7 @@
 #define DIALOG_EMAIL			5002
 #define DIALOG_TOKEN			5003
 #define DATABASE_NAME			"users.db"
-#define PHP_URL					"localhost/teste/send-token.php?Email=%s&Token=%i"
+#define PHP_URL				"localhost/teste/send-token.php?Email=%s&Token=%i"
 
 enum E_PLAYER
 {
@@ -39,7 +39,7 @@ public OnPlayerConnect(playerid)
 		new token = db_get_field_assoc_int(result, "token");
 		if(token != 0)
 		{
-			ShowPlayerDialog(playerid, DIALOG_TOKEN, DIALOG_STYLE_INPUT, "Insira o token abaixo:", "Você não finalizou a ativação da conta!\n\nPara finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
+			ShowPlayerDialog(playerid, DIALOG_TOKEN, DIALOG_STYLE_INPUT, "Insira o token abaixo:", "VocÃª nÃ£o finalizou a ativaÃ§Ã£o da conta!\n\nPara finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
 			db_free_result(result);
 			return false;
 		}
@@ -50,7 +50,7 @@ public OnPlayerConnect(playerid)
 	else
 	{
 		format(caption, sizeof caption, "Seja bem vindo(a), %s!", _player[playerid][Nome]);
-		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, caption, "Você ainda não possui conta conosco.\nClique em \"REGISTRAR\" para criar sua nova conta.", "REGISTRAR", "SAIR");
+		ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, caption, "VocÃª ainda nÃ£o possui conta conosco.\nClique em \"REGISTRAR\" para criar sua nova conta.", "REGISTRAR", "SAIR");
 	}
 	
 	db_free_result(result);
@@ -86,7 +86,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(!strlen(inputtext))
 			{
 				format(caption, sizeof caption, "Seja bem vindo(a) novamente, %s!", _player[playerid][Nome]);
-				ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, caption, "Senha inválida!\n\nClique em \"LOGAR\" para continuar o progresso de sua conta.", "LOGAR", "SAIR");
+				ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, caption, "Senha invÃ¡lida!\n\nClique em \"LOGAR\" para continuar o progresso de sua conta.", "LOGAR", "SAIR");
 				return false;
 			}
 			
@@ -100,7 +100,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				new token = db_get_field_assoc_int(result, "token");
 				if(token != 0)
 				{
-					ShowPlayerDialog(playerid, DIALOG_TOKEN, DIALOG_STYLE_INPUT, "Insira o token abaixo:", "Você não finalizou a ativação da conta!\n\nPara finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
+					ShowPlayerDialog(playerid, DIALOG_TOKEN, DIALOG_STYLE_INPUT, "Insira o token abaixo:", "VocÃª nÃ£o finalizou a ativaÃ§Ã£o da conta!\n\nPara finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
 					db_free_result(result);
 					return false;
 				}
@@ -111,7 +111,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			else
 			{
 				format(caption, sizeof caption, "Seja bem vindo(a) novamente, %s!", _player[playerid][Nome]);
-				ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, caption, "Senha inválida!\n\nClique em \"LOGAR\" para continuar o progresso de sua conta.", "LOGAR", "SAIR");
+				ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_INPUT, caption, "Senha invÃ¡lida!\n\nClique em \"LOGAR\" para continuar o progresso de sua conta.", "LOGAR", "SAIR");
 			}
 			
 			db_free_result(result);
@@ -128,12 +128,12 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			if(strlen(inputtext) < 7)
 			{
 				format(caption, sizeof caption, "Seja bem vindo(a), %s!", _player[playerid][Nome]);
-				ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, caption, "A senha deve conter, no mínimo, 8 caracteres.\n\nVocê ainda não possui conta conosco.\nClique em \"AVANÇAR\" para ir à próxima etapa.", "AVANÇAR", "SAIR");
+				ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, caption, "A senha deve conter, no mÃ­nimo, 8 caracteres.\n\nVocÃª ainda nÃ£o possui conta conosco.\nClique em \"AVANÃ‡AR\" para ir Ã  prÃ³xima etapa.", "AVANÃ‡AR", "SAIR");
 				return false;
 			}
 			
 			SHA256_PassHash(inputtext, "salt123", _player[playerid][Senha], 65);
-			ShowPlayerDialog(playerid, DIALOG_EMAIL, DIALOG_STYLE_INPUT, "Insira seu e-mail:", "Insira um e-mail válido.\nLembre-se: Um token será enviado ao seu endereço de e-mail para finalizar o cadastro.\nClique em \"AVANÇAR\" para ir à próxima etapa.", "AVANÇAR", "VOLTAR");
+			ShowPlayerDialog(playerid, DIALOG_EMAIL, DIALOG_STYLE_INPUT, "Insira seu e-mail:", "Insira um e-mail vÃ¡lido.\nLembre-se: Um token serÃ¡ enviado ao seu endereÃ§o de e-mail para finalizar o cadastro.\nClique em \"AVANÃ‡AR\" para ir Ã  prÃ³xima etapa.", "AVANÃ‡AR", "VOLTAR");
 		}
 		else
 			Kick(playerid);
@@ -146,7 +146,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		{
 			if(strlen(inputtext) < 5)
 			{
-				ShowPlayerDialog(playerid, DIALOG_EMAIL, DIALOG_STYLE_INPUT, "Insira seu e-mail:", "Insira um e-mail válido.\nLembre-se: Um token será enviado ao seu endereço de e-mail para finalizar o cadastro.\nClique em \"AVANÇAR\" para ir à próxima etapa.", "AVANÇAR", "VOLTAR");
+				ShowPlayerDialog(playerid, DIALOG_EMAIL, DIALOG_STYLE_INPUT, "Insira seu e-mail:", "Insira um e-mail vÃ¡lido.\nLembre-se: Um token serÃ¡ enviado ao seu endereÃ§o de e-mail para finalizar o cadastro.\nClique em \"AVANÃ‡AR\" para ir Ã  prÃ³xima etapa.", "AVANÃ‡AR", "VOLTAR");
 				return false;
 			}
 			
@@ -156,7 +156,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 		else
 		{
 			format(caption, sizeof caption, "Seja bem vindo(a), %s!", _player[playerid][Nome]);
-			ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, caption, "A senha deve conter, no mínimo, 8 caracteres.\n\nVocê ainda não possui conta conosco.\nClique em \"AVANÇAR\" para ir à próxima etapa.", "AVANÇAR", "SAIR");
+			ShowPlayerDialog(playerid, DIALOG_REGISTER, DIALOG_STYLE_INPUT, caption, "A senha deve conter, no mÃ­nimo, 8 caracteres.\n\nVocÃª ainda nÃ£o possui conta conosco.\nClique em \"AVANÃ‡AR\" para ir Ã  prÃ³xima etapa.", "AVANÃ‡AR", "SAIR");
 		}
 	}
 	else if(dialogid == DIALOG_TOKEN)
@@ -173,7 +173,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			
 			if(IsValidToken(playerid, strval(inputtext)) == 0)
 			{
-				ShowPlayerDialog(playerid, DIALOG_TOKEN, DIALOG_STYLE_INPUT, "Insira o token abaixo:", "Token inválido!\n\nPara finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
+				ShowPlayerDialog(playerid, DIALOG_TOKEN, DIALOG_STYLE_INPUT, "Insira o token abaixo:", "Token invÃ¡lido!\n\nPara finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
 			}
 			else
 			{
@@ -206,7 +206,7 @@ ConfigDatabase()
 	}
 	else
 	{
-		print("\n______________________________________Não foi possível abrir o banco de dados!\n______________________________________\n");
+		print("\n______________________________________NÃ£o foi possÃ­vel abrir o banco de dados!\n______________________________________\n");
 		SendRconCommand("GMX");
 	}
 }
@@ -272,13 +272,13 @@ public SendAccountToken(index, response_code, data[])
     {
     	new caption[65];
     	
-		SendClientMessage(index, -1, "Em breve você receberá um e-mail contendo um token que deverá ser informado na caixa de diálogo.");
+		SendClientMessage(index, -1, "Em breve vocÃª receberÃ¡ um e-mail contendo um token que deverÃ¡ ser informado na caixa de diÃ¡logo.");
 		
 		format(caption, sizeof caption, "Insira o token abaixo:", _player[index][Nome]);
 		ShowPlayerDialog(index, DIALOG_TOKEN, DIALOG_STYLE_INPUT, caption, "Para finalizar seu cadastro, entre no seu e-mail cadastrado e copie e cole aqui o token fornecido.\nO e-mail pode demorar alguns minutos para chegar.\n* Verifique a caixa de spam!\n\nClique em \"REGISTRAR\" para finalizar o cadastro.", "REGISTRAR", "SAIR");
 	}
 	else
-		SendClientMessage(index, -1, "Houve uma instabilidade em nosso servidor e não foi possível enviar o token. Fale com a administração.");
+		SendClientMessage(index, -1, "Houve uma instabilidade em nosso servidor e nÃ£o foi possÃ­vel enviar o token. Fale com a administraÃ§Ã£o.");
     
     return true;
 }
