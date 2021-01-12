@@ -19,7 +19,7 @@ enum E_PLAYER
 new _player[MAX_PLAYERS][E_PLAYER];
 new DB:_dbHandle;
 
-main()
+public OnFilterScriptInit()
 {
 	ConfigDatabase();
 }
